@@ -1,0 +1,65 @@
+.landingContainer {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #f8f9fa;
+}
+
+.header h1 {
+  margin: 0;
+  color: #333;
+}
+
+.header nav a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: #007bff;
+}
+
+.main {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 50px;
+}
+
+.main h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.main p {
+  margin-bottom: 30px;
+  max-width: 600px;
+}
+
+.main button {
+  padding: 10px 20px;
+  font-size: 18px;
+  color: white;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.main button:hover {
+  background-color: #0056b3;
+}
+
+.footer {
+  padding: 20px;
+  background-color: #f8f9fa;
+  text-align: center;
+}
+
