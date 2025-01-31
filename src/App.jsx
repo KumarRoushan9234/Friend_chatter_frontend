@@ -16,11 +16,10 @@ import Profile from "./components/Profile/Profile";
 import Home from "./components/Home/Home";
 import { useAuthStore } from "./store/useAuthStore";
 // import {Loader} from "lucide-react";
-import toast from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   // Zustand hook
-  toast();
   return (
     <Router>
       <RouteContent />
@@ -76,7 +75,7 @@ function RouteContent() {
           element={authUser ? <Home /> : <Navigate to="/login" />}
         />
         <Route
-          path="/admin"
+          path="/settings"
           element={authUser ? <Dashboard /> : <Navigate to="/login" />}
         />
         <Route
@@ -84,6 +83,7 @@ function RouteContent() {
           element={authUser ? <Profile /> : <Navigate to="/login" />}
         />
       </Routes>
+      <Toaster />
     </>
   );
 }

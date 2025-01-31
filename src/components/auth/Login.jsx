@@ -15,6 +15,8 @@ const Login = () => {
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false); // State for toggling password visibility
 
+  const { login, isLoggingIn } = useAuthStore();
+
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -23,54 +25,59 @@ const Login = () => {
   };
 
   // const {login} = useAuthStore();
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   // Basic validation for email and password length
+  //   if (formData.password.length < 6) {
+  //     toast.error("Password must be at least 6 characters.", {
+  //       duration: 3000,
+  //       style: { background: "#f44336", color: "white" },
+  //       position: "top-right", // Position the toast at the top right
+  //     });
+  //     return;
+  //   }
+  //   if (!/\S+@\S+\.\S+/.test(formData.email)) {
+  //     toast.error("Please enter a valid email address.", {
+  //       duration: 3000,
+  //       style: { background: "#f44336", color: "white" },
+  //       position: "top-right", // Position the toast at the top right
+  //     });
+  //     return;
+  //   }
+  //   try {
+  //     const response = await api.post("/auth/login", formData);
+  //     console.log(response);
+  //     if (response.data.success) {
+  //       // navigate("/home", { replace: true });
+  //       toast.success(response.data.message, {
+  //         duration: 3000,
+  //         style: { background: "#4CAF50", color: "white" },
+  //         position: "top-right", // Position the toast at the top right
+  //       });
+  //       setTimeout(() => {
+  //         navigate("/"); // Redirect to login after success
+  //       }, 2000);
+  //     } else {
+  //       setError(error.response?.data?.message || "Something went wrong!");
+  //       toast.error(response.data.message, {
+  //         duration: 3000,
+  //         style: { background: "#f44336", color: "white" },
+  //         position: "top-right", // Position the toast at the top right
+  //       });
+  //     }
+  //   } catch (error) {
+  //     setError(error.response?.data?.message || "Something went wrong!");
+  //     toast.error(error.response?.data?.message || "Something went wrong!", {
+  //       duration: 3000,
+  //       style: { background: "#f44336", color: "white" },
+  //       position: "top-right", // Position the toast at the top right
+  //     });
+  //   }
+  // };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Basic validation for email and password length
-    if (formData.password.length < 6) {
-      toast.error("Password must be at least 6 characters.", {
-        duration: 3000,
-        style: { background: "#f44336", color: "white" },
-        position: "top-right", // Position the toast at the top right
-      });
-      return;
-    }
-    if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      toast.error("Please enter a valid email address.", {
-        duration: 3000,
-        style: { background: "#f44336", color: "white" },
-        position: "top-right", // Position the toast at the top right
-      });
-      return;
-    }
-    try {
-      const response = await api.post("/auth/login", formData);
-      console.log(response);
-      if (response.data.success) {
-        // navigate("/home", { replace: true });
-        toast.success(response.data.message, {
-          duration: 3000,
-          style: { background: "#4CAF50", color: "white" },
-          position: "top-right", // Position the toast at the top right
-        });
-        setTimeout(() => {
-          navigate("/"); // Redirect to login after success
-        }, 2000);
-      } else {
-        setError(error.response?.data?.message || "Something went wrong!");
-        toast.error(response.data.message, {
-          duration: 3000,
-          style: { background: "#f44336", color: "white" },
-          position: "top-right", // Position the toast at the top right
-        });
-      }
-    } catch (error) {
-      setError(error.response?.data?.message || "Something went wrong!");
-      toast.error(error.response?.data?.message || "Something went wrong!", {
-        duration: 3000,
-        style: { background: "#f44336", color: "white" },
-        position: "top-right", // Position the toast at the top right
-      });
-    }
+    login(formData);
   };
 
   const togglePassword = () => {
@@ -138,7 +145,7 @@ const Login = () => {
               <p className="text-center text-sm text-white mb-4">
                 Login to your account
               </p>
-              {error && <p className="text-red-500 text-center">{error}</p>}
+              {/* {error && <p className="text-red-500 text-center">{error}</p>} */}
 
               <form onSubmit={handleSubmit}>
                 {/* Email Input */}

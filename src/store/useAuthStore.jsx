@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import api from "../lib/axios";
+import toast from "react-hot-toast";
 
 // export const useAuthStore = create((set) => ({
 //   count: 1,
@@ -31,33 +32,51 @@ export const useAuthStore = create((set) => ({
   },
 
   signup: async (data) => {
+    set({ isSigningUp: true });
     try {
       const res = await api.post("/auth/signup", data);
-      set({ isSigningUp: true });
+      toast.success("Account Created Successfully! |");
+      toast.success(`Welcome ${res.data}!`);
+      set({ authUser: res.data });
     } catch (error) {
       console.log("error while Signup", error);
+      toast.error("Something went worng!");
+      toast.error(error.res.message);
+    } finally {
+      set({ isSigningUp: false });
     }
   },
 
   login: async (Credentials) => {
+    set({ isLoggininIn: true });
     try {
       const res = await api.post("/auth/login", Credentials);
+      toast.success("User LoggedIn Successfully! |");
+      toast.success(`Welcome back ${res.data}!`);
       set({ authUser: res.data });
       console.log("Successful Login! ", res.data);
       return true;
     } catch (error) {
       console.log("Error in Login", error);
+      toast.error("Something went worng!");
+      toast.error(error.res.message);
       return false;
+    } finally {
+      set({ isLoggininIn: false });
     }
   },
 
-  logout: () => {
+  logout: async () => {
+    set({ isSigningOut: true });
     try {
-      api.post("/auth/logout");
+      await api.post("/auth/logout");
       set({ authUser: null });
       console.log("User Logout Successful");
+      toast.success("User Logged out!");
     } catch (error) {
       console.log("Error in Logout", error);
+      toast.error("Something went worng!");
+      toast.error(error.res.message);
     }
   },
 }));

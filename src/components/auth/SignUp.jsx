@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../../lib/axios.jsx";
+import ImagePattern from "../../lib/ImagePatter.jsx";
 import { Github } from "lucide-react"; // For GitHub icon
 import { FaGoogle, FaRegEye, FaRegEyeSlash } from "react-icons/fa"; // For Google icon
 import { Typewriter } from "react-simple-typewriter";
@@ -55,7 +56,7 @@ const SignUp = () => {
           position: "top-right", // Position the toast at the top right
         });
         setTimeout(() => {
-          navigate("/login"); // Redirect to login after success
+          navigate("/home"); // Redirect to login after success
         }, 2000);
       } else {
         setError(error.response?.data?.message || "Something went wrong!");
@@ -139,7 +140,7 @@ const SignUp = () => {
               <p className="text-center text-sm text-white mb-4">
                 Sign up to join us
               </p>
-              {error && <p className="text-red-500 text-center">{error}</p>}
+              {/* {error && <p className="text-red-500 text-center">{error}</p>} */}
 
               <form onSubmit={handleSubmit}>
                 {/* Name Input */}
@@ -238,6 +239,12 @@ const SignUp = () => {
                     <span>Sign up with GitHub</span>
                   </button>
                 </div>
+                <div className="text-center text-sm text-white">
+                  Already have an account?{" "}
+                  <a href="/login" className="underline underline-offset-4">
+                    Log In
+                  </a>
+                </div>
               </form>
             </div>
           </div>
@@ -257,18 +264,23 @@ const SignUp = () => {
               designed for your convenience. Sign up today and be part of a
               growing community.
             </p>
-
-            <ul className="list-disc list-inside text-lg space-y-2">
+            {/* <ImagePattern
+              title={"Welcome back!"}
+              subtitle={
+                "Sign in to continue your conversations and catch up with your messages."
+              }
+            /> */}
+            {/* <ul className="list-disc list-inside text-lg space-y-2">
               <li>🔒 Secure and Fast Login</li>
               <li>🎉 Personalized User Experience</li>
               <li>🚀 Access to Premium Features</li>
-            </ul>
+            </ul> */}
 
             <div className="mt-8 text-xl font-semibold">
               <Typewriter
                 words={[
-                  "Welcome to Our Platform!",
-                  "Join Us Today!",
+                  "🔒 Secure and Fast Login!",
+                  "🎉 Personalized User Experience",
                   "Experience Seamless Login!",
                   "Your Journey Starts Here!",
                 ]}
