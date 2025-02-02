@@ -57,3 +57,18 @@
     @apply font-sans antialiased bg-background text-foreground;
   }
 }
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Firefox */
+* {
+  scrollbar-width: none;
+}
+
+/* Hide scrollbar in Webkit-based browsers */
+::-webkit-scrollbar {
+  display: none;
+}
+

@@ -1,23 +1,30 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuthStore } from "../../store/useAuthStore";
-import { LogOut, MessageSquare, Settings, User } from "lucide-react";
+import { LogOut, Settings, User } from "lucide-react";
+import { useEffect } from "react";
 
 const Navbar = () => {
   const { logout, authUser } = useAuthStore();
+  const navigate = useNavigate();
+  // useEffect(() => {
+  //   console.log(authUser);
+  // }, [authUser]);
 
+  const handleLogout = async (e) => {
+    e.preventDefault();
+    // e.preventDefault();
+    logout();
+  };
   return (
     <header className="bg-blue-900 border-b border-base-300 fixed w-full top-0 z-40 backdrop-blur-lg bg-blue-900/80">
-      <div className="container mx-auto px-6 py-4 h-16">
+      <div className="container mx-auto px-6 py-4 h-16 min-h-[60px]">
         <div className="flex items-center justify-between h-full rounded-lg">
           {/* Logo and Home Link */}
           <div className="flex items-center gap-8">
             <Link
               to="/home"
-              className="flex items-center gap-2.5 hover:opacity-80 transition-all"
+              className="flex items-center gap-2.5 transition-colors duration-300 hover:text-blue-400"
             >
-              {/* <div className="size-9 rounded-lg bg-primary/10 flex items-center justify-center">
-                <MessageSquare className="w-5 h-5 text-primary" />
-              </div> */}
               <h1 className="text-lg font-bold text-white">Friend Chatter</h1>
             </Link>
           </div>
@@ -33,7 +40,7 @@ const Navbar = () => {
                 >
                   <User className="size-5" />
                   <span className="hidden sm:inline">
-                    {authUser?.name || "User"}
+                    {authUser.data?.name || "User"}
                   </span>{" "}
                   {/* Added fallback */}
                 </Link>
@@ -48,8 +55,9 @@ const Navbar = () => {
 
                 {/* Logout Button (red) */}
                 <button
+                  // onClick={handleLogout}
                   className="flex gap-2 items-center text-red-500 hover:bg-red-600 rounded-lg"
-                  onClick={logout}
+                  onClick={handleLogout}
                 >
                   <LogOut className="size-5" />
                   <span className="hidden sm:inline">Logout</span>
