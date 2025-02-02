@@ -16,7 +16,7 @@ const Navbar = () => {
     logout();
   };
   return (
-    <header className="bg-blue-900 border-b border-base-300 fixed w-full top-0 z-40 backdrop-blur-lg bg-blue-900/80">
+    <header className="bg-blue-900 border-b border-base-300 fixed w-full top-0 z-40 backdrop-blur-lg bg-blue-900/80 overflow-hidden">
       <div className="container mx-auto px-6 py-4 h-16 min-h-[60px]">
         <div className="flex items-center justify-between h-full rounded-lg">
           {/* Logo and Home Link */}

@@ -11,6 +11,7 @@ import toast from "react-hot-toast";
 export const useAuthStore = create((set) => ({
   authUser: null,
   // destructure the value from Zustand and just use it.
+  onlineUsers: [],
 
   //for loading
   isSigningUp: false,

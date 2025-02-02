@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    --background: rgb(17,24,40); /* Dark black background */
     --foreground: 222.2 47.4% 11.2%;
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
@@ -26,8 +26,9 @@
     --radius: 0.5rem;
   }
 
+  /* Dark Mode */
   .dark {
-    --background: 224 71% 4%;
+    --background: 0 0% 0%; /* Set to black for dark mode */
     --foreground: 213 31% 91%;
     --muted: 223 47% 11%;
     --muted-foreground: 215.4 16.3% 56.9%;
@@ -56,6 +57,12 @@
   body {
     @apply font-sans antialiased bg-background text-foreground;
   }
+
+  /* Ensure no overflow or issue with scrollbar */
+  html,
+  body {
+    overflow-x: hidden;
+  }
 }
 
 ::-webkit-scrollbar {
@@ -71,4 +78,3 @@
 ::-webkit-scrollbar {
   display: none;
 }
-
